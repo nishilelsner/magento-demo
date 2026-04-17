@@ -1,0 +1,55 @@
+<div class="blog-list-table-container">
+    <table class="blog-list-table">
+        <tr class="blog-list-table-head">
+            <th class="blog-list-table-id">
+                <?= __("Id")?>
+            </th>
+            <th class="blog-list-table-title">
+                <?= __("Title")?>
+            </th>
+            <th class="blog-list-table-content">
+                <?= __("Content")?>
+            </th>
+            <th class="blog-list-table-action-edit">
+                <?= __("Edit")?>
+            </th>
+            <th class="blog-list-table-action-delete">
+                <?= __("Delete")?>
+            </th>
+        </tr>
+        <?php   
+        $blogs = $block->getBlogs();
+
+        foreach ($blogs as $blog) {?>
+        <tr class="blog-list-table-row">
+            <td class="blog-list-table-id">
+                <?= $escaper->escapeHtml($blog->getId())?>
+            </td>
+            <td class="blog-list-table-title">
+                <?= $escaper->escapeHtml($blog->getTitle())?>
+            </td>
+            <td class="blog-list-table-content">
+                <?= substr($escaper->escapeHtml($blog->getContent()), 0, 20).'...'?>
+            </td>
+            <td class="blog-list-table-action blog-list-table-action-edit">
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/edit', ['id'=>$escaper->escapeHtml($blog->getId())]))?>">
+                    <?= __('Edit') ?>
+                </a>
+            </td>
+            <td class="blog-list-table-action blog-list-table-action-delete">
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/delete', ['id'=>$escaper->escapeHtml($blog->getId())]))?>">
+                    <?= __('Delete') ?>
+                </a>
+            </td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "bloglist": ""
+        }
+    }
+</script>
