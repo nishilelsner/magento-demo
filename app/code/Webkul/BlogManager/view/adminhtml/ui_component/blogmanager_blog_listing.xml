@@ -55,7 +55,7 @@
                 <resizeDefaultWidth>25</resizeDefaultWidth>
             </settings>
         </column>
-        <column name="user_id">
+        <column name="user_name">
             <settings>
                 <filter>text</filter>
                 <label translate="true">User</label>
