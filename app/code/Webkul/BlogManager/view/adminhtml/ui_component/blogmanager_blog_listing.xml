@@ -67,9 +67,19 @@
                 <label translate="true">Title</label>
             </settings>
         </column>
-        <column name="status">
+        <column name="content" class="Webkul\BlogManager\Ui\Component\Listing\Columns\Content">
             <settings>
-                <filter>text</filter>
+                <filter>false</filter>
+                <sortable>false</sortable>
+                <label translate="true">Content</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Webkul\BlogManager\Model\Blog\Status"/>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <sortable>false</sortable>
                 <label translate="true">Status</label>
             </settings>
         </column>
