@@ -39,16 +39,28 @@ class Save extends Action
             $model->setTitle($data['title'])
                 ->setContent($data['content'])
                 ->setStatus($data['status'])
-                ->save();
+                ->setUserId($data['user_id']);
+            if (isset($data['products'])) {
+                $model->setProducts(implode(',', $data['products']));
+            } else {
+                $model->setProducts('');
+            }
+            $model->save();
             $this->messageManager->addSuccess(__('You have updated the blog successfully.'));
         } else {
             $model = $this->blogFactory->create();
             $model->setTitle($data['title'])
                 ->setContent($data['content'])
                 ->setStatus($data['status'])
-                ->save();
+                ->setUserId($data['user_id']);
+            if (isset($data['products'])) {
+                $model->setProducts(implode(',', $data['products']));
+            } else {
+                $model->setProducts('');
+            }
+            $model->save();
             $this->messageManager->addSuccess(__('You have successfully created the blog.'));
-        }  
+        }
         return $resultRedirect->setPath('*/*/');
     }
 

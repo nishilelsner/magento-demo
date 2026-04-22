@@ -69,6 +69,16 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
             ]
         );
 
+        $this->addTab(
+            'related_products',
+            [
+                'label' => __('Related Products'),
+                'content' => $this->getLayout()->createBlock(
+                    'Webkul\BlogManager\Block\Adminhtml\Blog\Edit\Tab\RelatedProducts'
+                )->toHtml()
+            ]
+        );
+
         return parent::_prepareLayout();
     }
 }
