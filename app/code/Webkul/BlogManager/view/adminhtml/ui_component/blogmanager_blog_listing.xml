@@ -148,6 +148,19 @@
                 <label translate="true">Created</label>
             </settings>
         </column>
+        <actionsColumn name="edit_action" class="Webkul\BlogManager\Ui\Component\Listing\Columns\EditAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="viewUrlPath" xsi:type="string">blogmanager/manage/edit</item>
+                    <item name="urlEntityParamName" xsi:type="string">id</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Edit</label>
+            </settings>
+        </actionsColumn>
         <actionsColumn name="delete_action" class="Webkul\BlogManager\Ui\Component\Listing\Columns\DeleteAction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
