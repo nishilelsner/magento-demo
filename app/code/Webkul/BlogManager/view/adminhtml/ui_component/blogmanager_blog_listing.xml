@@ -29,7 +29,7 @@
         </argument>
     </dataSource>
     <listingToolbar name="listing_top">
-        <massaction name="listing_massaction">
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
             <argument name="data" xsi:type="array">
                 <item name="data" xsi:type="array">
                 <item name="selectProvider" xsi:type="string">blogmanager_blog_listing.blogmanager_blog_listing.blogmanager_blog_columns.ids</item>
@@ -49,6 +49,28 @@
                     </item>
                 </item>
                 </argument>
+            </action>
+            <action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>enable</type>
+                            <label translate="true">Enable</label>
+                            <url path="blog/manage/massStatus">
+                                <param name="status">1</param>
+                            </url>
+                        </action>
+                        <action name="1">
+                            <type>disable</type>
+                            <label translate="true">Disable</label>
+                            <url path="blog/manage/massStatus">
+                                <param name="status">0</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
             </action>
         </massaction>
         <bookmark name="bookmarks"/>
