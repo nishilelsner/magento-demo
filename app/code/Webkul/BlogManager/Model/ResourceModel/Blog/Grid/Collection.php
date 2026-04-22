@@ -134,10 +134,10 @@ class Collection extends BlogCollection implements SearchResultInterface
         $this->getSelect()->joinLeft(
             $cgfTable.' as cgf',
             'main_table.user_id = cgf.entity_id',
-            [
-                'user_name'=>'cgf.name'
-            ]
-        );
+            []
+        )
+        ->columns('IFNULL(cgf.name, "Admin") AS user_name');
+
         parent::_renderFiltersBefore();
     }
     
