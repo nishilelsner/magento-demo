@@ -148,5 +148,18 @@
                 <label translate="true">Created</label>
             </settings>
         </column>
+        <actionsColumn name="delete_action" class="Webkul\BlogManager\Ui\Component\Listing\Columns\DeleteAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="viewUrlPath" xsi:type="string">blogmanager/manage/delete</item>
+                    <item name="urlEntityParamName" xsi:type="string">id</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Delete</label>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>
