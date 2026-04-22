@@ -29,6 +29,28 @@
         </argument>
     </dataSource>
     <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="data" xsi:type="array">
+                <item name="selectProvider" xsi:type="string">blogmanager_blog_listing.blogmanager_blog_listing.blogmanager_blog_columns.ids</item>
+                <item name="displayArea" xsi:type="string">bottom</item>
+                <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">delete</item>
+                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                    <item name="url" xsi:type="url" path="blog/manage/massDelete"/>
+                    <item name="confirm" xsi:type="array">
+                        <item name="title" xsi:type="string" translate="true">Delete Blogs?</item>
+                        <item name="message" xsi:type="string" translate="true">Are you sure you want to delete the selected blogs?</item>
+                    </item>
+                </item>
+                </argument>
+            </action>
+        </massaction>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
         <filters name="listing_filters">
@@ -48,6 +70,13 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="blogmanager_blog_columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
         <column name="entity_id">
             <settings>
                 <filter>textRange</filter>
