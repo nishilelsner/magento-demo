@@ -10,6 +10,15 @@
             <th class="blog-list-table-content">
                 <?= __("Content")?>
             </th>
+            <th class="blog-list-table-status">
+                <?= __("Status")?>
+            </th>
+            <th class="blog-list-table-date">
+                <?= __("Updated At")?>
+            </th>
+            <th class="blog-list-table-date">
+                <?= __("Created At")?>
+            </th>
             <th class="blog-list-table-action-edit">
                 <?= __("Edit")?>
             </th>
@@ -17,9 +26,9 @@
                 <?= __("Delete")?>
             </th>
         </tr>
-        <?php   
+        <?php
         $blogs = $block->getBlogs();
-
+        $statuses = $escaper->escapeHtml($block->getStatuses());
         foreach ($blogs as $blog) {?>
         <tr class="blog-list-table-row">
             <td class="blog-list-table-id">
@@ -31,13 +40,22 @@
             <td class="blog-list-table-content">
                 <?= substr($escaper->escapeHtml($blog->getContent()), 0, 20).'...'?>
             </td>
+            <td class="blog-list-table-status">
+                <?= $escaper->escapeHtml($statuses[$escaper->escapeHtml($blog->getStatus())])?>
+            </td>
+            <td class="blog-list-table-date">
+                <?= $escaper->escapeHtml($block->getFormattedDate($escaper->escapeHtml($blog->getUpdatedAt())))?>
+            </td>
+            <td class="blog-list-table-date">
+                <?= $escaper->escapeHtml($block->getFormattedDate($escaper->escapeHtml($blog->getCreatedAt())))?>
+            </td>
             <td class="blog-list-table-action blog-list-table-action-edit">
-                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/edit', ['id'=>$escaper->escapeHtml($blog->getId())]))?>">
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/edit', ['id'=>$blog->getId()]))?>">
                     <?= __('Edit') ?>
                 </a>
             </td>
             <td class="blog-list-table-action blog-list-table-action-delete">
-                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/delete', ['id'=>$escaper->escapeHtml($blog->getId())]))?>">
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/manage/delete', ['id'=>$blog->getId()]))?>">
                     <?= __('Delete') ?>
                 </a>
             </td>
@@ -45,7 +63,6 @@
         <?php } ?>
     </table>
 </div>
-
 <script type="text/x-magento-init">
     {
         "*": {

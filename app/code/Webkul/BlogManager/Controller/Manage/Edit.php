@@ -4,7 +4,6 @@ namespace Webkul\BlogManager\Controller\Manage;
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Customer\Model\Session;
 
 class Edit extends AbstractAccount
 {
@@ -19,9 +18,9 @@ class Edit extends AbstractAccount
     protected $blogFactory;
 
     /**
-     * @var Magento\Customer\Model\Session
+     * @var \Webkul\BlogManager\Helper\Data
      */
-    protected $customerSession;
+    protected $helper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
@@ -34,19 +33,19 @@ class Edit extends AbstractAccount
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param \Webkul\BlogManager\Model\BlogFactory $blogFactory
-     * @param Session $customerSession
+     * @param \Webkul\BlogManager\Helper\Data $helper
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         \Webkul\BlogManager\Model\BlogFactory $blogFactory,
-        Session $customerSession,
+        \Webkul\BlogManager\Helper\Data $helper,
         \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->blogFactory = $blogFactory;
-        $this->customerSession = $customerSession;
+        $this->helper = $helper;
         $this->messageManager = $messageManager;
         parent::__construct($context);
     }
@@ -60,7 +59,7 @@ class Edit extends AbstractAccount
     public function execute()
     {
         $blogId = $this->getRequest()->getParam('id');
-        $customerId = $this->customerSession->getCustomerId();
+        $customerId = $this->helper->getCustomerId();
         $isAuthorised = $this->blogFactory->create()
                                     ->getCollection()
                                     ->addFieldToFilter('user_id', $customerId)

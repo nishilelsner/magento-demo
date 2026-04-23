@@ -3,7 +3,6 @@ namespace Webkul\BlogManager\Controller\Manage;
 
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Framework\App\Action\Context;
-use Magento\Customer\Model\Session;
 
 class Save extends AbstractAccount
 {
@@ -13,9 +12,9 @@ class Save extends AbstractAccount
     protected $blogFactory;
 
     /**
-     * @var Magento\Customer\Model\Session
+     * @var \Webkul\BlogManager\Helper\Data
      */
-    protected $customerSession;
+    protected $helper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
@@ -27,17 +26,17 @@ class Save extends AbstractAccount
      *
      * @param Context $context
      * @param \Webkul\BlogManager\Model\BlogFactory $blogFactory
-     * @param Session $customerSession
+     * @param \Webkul\BlogManager\Helper\Data $helper
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
         \Webkul\BlogManager\Model\BlogFactory $blogFactory,
-        Session $customerSession,
+        \Webkul\BlogManager\Helper\Data $helper,
         \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->blogFactory = $blogFactory;
-        $this->customerSession = $customerSession;
+        $this->helper = $helper;
         $this->messageManager = $messageManager;
         parent::__construct($context);
     }
@@ -50,7 +49,7 @@ class Save extends AbstractAccount
     public function execute()
     {
         $data = $this->getRequest()->getParams();
-        $customerId = $this->customerSession->getCustomerId();
+        $customerId = $this->helper->getCustomerId();
         if (isset($data['id']) && $data['id']) {
             $isAuthorised = $this->blogFactory->create()
                                         ->getCollection()

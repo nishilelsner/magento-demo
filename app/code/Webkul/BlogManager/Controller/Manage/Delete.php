@@ -3,7 +3,6 @@ namespace Webkul\BlogManager\Controller\Manage;
 
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Framework\App\Action\Context;
-use Magento\Customer\Model\Session;
 
 class Delete extends AbstractAccount
 {
@@ -13,9 +12,9 @@ class Delete extends AbstractAccount
     protected $blogFactory;
 
     /**
-     * @var Magento\Customer\Model\Session
+     * @var \Webkul\BlogManager\Helper\Data
      */
-    protected $customerSession;
+    protected $helper;
 
     /**
      * @var \Magento\Framework\Serialize\Serializer\Json
@@ -27,17 +26,17 @@ class Delete extends AbstractAccount
      *
      * @param Context $context
      * @param \Webkul\BlogManager\Model\BlogFactory $blogFactory
-     * @param Session $customerSession
+     * @param \Webkul\BlogManager\Helper\Data $helper
      * @param \Magento\Framework\Serialize\Serializer\Json $jsonData
      */
     public function __construct(
         Context $context,
         \Webkul\BlogManager\Model\BlogFactory $blogFactory,
-        Session $customerSession,
+        \Webkul\BlogManager\Helper\Data $helper,
         \Magento\Framework\Serialize\Serializer\Json $jsonData
     ) {
         $this->blogFactory = $blogFactory;
-        $this->customerSession = $customerSession;
+        $this->helper = $helper;
         $this->jsonData = $jsonData;
         parent::__construct($context);
     }
@@ -50,7 +49,7 @@ class Delete extends AbstractAccount
     public function execute()
     {
         $blogId = $this->getRequest()->getParam('id');
-        $customerId = $this->customerSession->getCustomerId();
+        $customerId = $this->helper->getCustomerId();
         $isAuthorised = $this->blogFactory->create()
                                     ->getCollection()
                                     ->addFieldToFilter('user_id', $customerId)

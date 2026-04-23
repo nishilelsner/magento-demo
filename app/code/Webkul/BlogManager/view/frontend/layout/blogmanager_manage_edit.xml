@@ -6,7 +6,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Webkul\BlogManager\Block\Blog" name="blogmanager.blog.edit" template="Webkul_BlogManager::edit.phtml" />
+            <block class="Webkul\BlogManager\Block\Blog" name="blogmanager.blog.edit" template="Webkul_BlogManager::edit.phtml" cacheable="false" />
         </referenceContainer>
     </body>
 </page>
