@@ -1,0 +1,16 @@
+{
+    "practice_new_arrivals": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "sort_order": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRACTICE_NEW_ARRIVALS_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    }
+}
