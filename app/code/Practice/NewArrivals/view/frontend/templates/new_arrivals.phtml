@@ -1,0 +1,113 @@
+<?php
+/**
+ * @var \Practice\NewArrivals\Block\NewArrivals $block
+ */
+$products = $block->getProducts();
+$productCount = count($products);
+
+if ($productCount === 0) {
+    return;
+}
+?>
+
+<div class="new-arrivals-section" data-product-count="<?= $productCount ?>">
+
+    <!-- Section Header -->
+    <div class="new-arrivals-header">
+        <h2 class="new-arrivals-title">New Arrival</h2>
+        <a href="#" class="new-arrivals-view-all">View All</a>
+    </div>
+
+    <!-- Slider Wrapper -->
+    <div class="new-arrivals-slider-wrapper">
+
+        <!-- Left Arrow (hidden if no slider needed) -->
+        <button class="new-arrivals-arrow new-arrivals-arrow-left" aria-label="Previous">
+            &#8249;
+        </button>
+
+        <!-- Products Track -->
+        <div class="new-arrivals-track">
+            <?php foreach ($products as $product): ?>
+                <div class="new-arrivals-card">
+
+                    <!-- Wishlist Button -->
+                    <button class="new-arrivals-wishlist" aria-label="Add to Wishlist">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </button>
+
+                    <!-- NEW Badge -->
+                    <?php if (!empty($product['is_new'])): ?>
+                        <span class="new-arrivals-badge">NEW</span>
+                    <?php endif; ?>
+
+                    <!-- Product Image -->
+                    <a href="<?= $block->escapeUrl($product['product_url']) ?>" class="new-arrivals-image-link">
+                        <img src="<?= $block->escapeUrl($product['image']) ?>"
+                            alt="<?= $block->escapeHtml($product['name']) ?>" class="new-arrivals-image" loading="lazy" />
+                    </a>
+
+                    <!-- Product Info -->
+                    <div class="new-arrivals-info">
+
+                        <!-- Product Name -->
+                        <a href="<?= $block->escapeUrl($product['product_url']) ?>" class="new-arrivals-name">
+                            <?= $block->escapeHtml($product['name']) ?>
+                        </a>
+
+                        <!-- Rating -->
+                        <div class="new-arrivals-rating">
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                <span class="star <?= $i <= $product['rating'] ? 'star-filled' : 'star-empty' ?>">★</span>
+                            <?php endfor; ?>
+                            <span class="new-arrivals-review-count">
+                                <?= $block->escapeHtml($product['rating']) ?>.0 (
+                                <?= (int) $product['review_count'] ?>)
+                            </span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="new-arrivals-price">
+                            <?php if ($product['special_price']): ?>
+                                <span class="new-arrivals-special-price">
+                                    US$
+                                    <?= number_format($product['special_price'], 2) ?>
+                                </span>
+                                <span class="new-arrivals-old-price">
+                                    US$
+                                    <?= number_format($product['price'], 2) ?>
+                                </span>
+                            <?php else: ?>
+                                <span class="new-arrivals-regular-price">
+                                    US$
+                                    <?= number_format($product['price'], 2) ?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart -->
+                    <button class="new-arrivals-add-to-cart">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="20" cy="21" r="1" />
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                        </svg>
+                        ADD TO CART
+                    </button>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Right Arrow -->
+        <button class="new-arrivals-arrow new-arrivals-arrow-right" aria-label="Next">
+            &#8250;
+        </button>
+    </div>
+
+    <!-- Dots Navigation -->
+    <div class="new-arrivals-dots"></div>
+</div>
