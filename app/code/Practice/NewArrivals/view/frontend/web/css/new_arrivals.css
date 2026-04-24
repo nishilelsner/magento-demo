@@ -1,0 +1,373 @@
+/* =============================================
+   NEW ARRIVALS SECTION
+   ============================================= */
+
+.new-arrivals-section {
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ---------- Section Header ---------- */
+.new-arrivals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.new-arrivals-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.new-arrivals-view-all {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.new-arrivals-view-all:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* ---------- Slider Wrapper ---------- */
+.new-arrivals-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ---------- Products Track ---------- */
+.new-arrivals-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.5s ease;
+}
+
+/* No slider mode — static grid */
+.new-arrivals-section.no-slider .new-arrivals-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+/* ---------- Product Card ---------- */
+.new-arrivals-card {
+    position: relative;
+    min-width: calc(25% - 12px); /* 4 cards per row on desktop */
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+}
+
+.new-arrivals-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Wishlist Button ---------- */
+.new-arrivals-wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 4px;
+    z-index: 2;
+    transition: color 0.2s ease;
+}
+
+.new-arrivals-wishlist:hover {
+    color: #e74c3c;
+}
+
+/* ---------- NEW Badge ---------- */
+.new-arrivals-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #00a67c;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+/* ---------- Product Image ---------- */
+.new-arrivals-image-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.new-arrivals-image {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.new-arrivals-card:hover .new-arrivals-image {
+    transform: scale(1.05);
+}
+
+/* ---------- Product Info ---------- */
+.new-arrivals-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.new-arrivals-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.new-arrivals-name:hover {
+    color: #007bff;
+}
+
+/* ---------- Rating Stars ---------- */
+.new-arrivals-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 4px 0;
+}
+
+.star {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.star-filled {
+    color: #f5a623;
+}
+
+.star-empty {
+    color: #ddd;
+}
+
+.new-arrivals-review-count {
+    font-size: 12px;
+    color: #888;
+    margin-left: 4px;
+}
+
+/* ---------- Price ---------- */
+.new-arrivals-price {
+    margin: 4px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.new-arrivals-regular-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.new-arrivals-special-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e74c3c;
+}
+
+.new-arrivals-old-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+/* ---------- Add to Cart Button ---------- */
+.new-arrivals-add-to-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.new-arrivals-add-to-cart:hover {
+    background: #333;
+    color: #fff;
+}
+
+.new-arrivals-add-to-cart svg {
+    transition: stroke 0.3s ease;
+}
+
+.new-arrivals-add-to-cart:hover svg {
+    stroke: #fff;
+}
+
+/* ---------- Navigation Arrows ---------- */
+.new-arrivals-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.new-arrivals-arrow:hover {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.new-arrivals-arrow-left {
+    left: -5px;
+}
+
+.new-arrivals-arrow-right {
+    right: -5px;
+}
+
+/* Hide arrows when no slider */
+.new-arrivals-section.no-slider .new-arrivals-arrow {
+    display: none;
+}
+
+/* ---------- Dots Navigation ---------- */
+.new-arrivals-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.new-arrivals-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease;
+}
+
+.new-arrivals-dot.active {
+    background: #333;
+}
+
+/* Hide dots when no slider */
+.new-arrivals-section.no-slider .new-arrivals-dots {
+    display: none;
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE
+   ============================================= */
+
+@media (max-width: 768px) {
+    .new-arrivals-section {
+        margin: 24px auto;
+        padding: 0 12px;
+    }
+
+    .new-arrivals-title {
+        font-size: 20px;
+    }
+
+    /* On mobile: 2 cards visible */
+    .new-arrivals-card {
+        min-width: calc(50% - 8px);
+    }
+
+    /* No slider mode on mobile — 2 column grid */
+    .new-arrivals-section.no-slider-mobile .new-arrivals-track {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .new-arrivals-section.no-slider-mobile .new-arrivals-arrow {
+        display: none;
+    }
+
+    .new-arrivals-section.no-slider-mobile .new-arrivals-dots {
+        display: none;
+    }
+
+    .new-arrivals-image {
+        max-height: 160px;
+    }
+
+    .new-arrivals-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .new-arrivals-add-to-cart {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-arrivals-card {
+        min-width: calc(50% - 6px);
+        padding: 10px;
+    }
+
+    .new-arrivals-name {
+        font-size: 13px;
+    }
+
+    .new-arrivals-regular-price,
+    .new-arrivals-special-price {
+        font-size: 14px;
+    }
+}
