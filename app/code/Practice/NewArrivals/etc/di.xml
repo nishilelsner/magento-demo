@@ -14,7 +14,7 @@
     <!-- Virtual Type to prepare the collection for the grid -->
     <virtualType name="Practice\NewArrivals\Model\ResourceModel\NewArrival\Grid\Collection" 
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>;
+        <arguments>
             <argument name="mainTable" xsi:type="string">practice_new_arrivals</argument>
             <argument name="resourceModel" xsi:type="string">Practice\NewArrivals\Model\ResourceModel\NewArrival</argument>
         </arguments>
