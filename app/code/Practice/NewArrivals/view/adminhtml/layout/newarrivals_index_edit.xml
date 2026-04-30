@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- 
+    newarrivals_index_edit.xml
+    This layout file activates when you visit /admin/newarrivals/index/edit (or when Add forwards to it).
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!-- Use the standard admin layout with the left sidebar -->
+    <update handle="editor"/>
+    <body>
+        <!-- Inject our content into the main 'content' area of the page -->
+        <referenceContainer name="content">
+            <!-- This tells Magento to load the UI Component file named 'new_arrivals_form.xml' -->
+            <uiComponent name="new_arrivals_form"/>
+        </referenceContainer>
+    </body>
+</page>

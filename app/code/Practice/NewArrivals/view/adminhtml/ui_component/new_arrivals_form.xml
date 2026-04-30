@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    new_arrivals_form.xml
+    This file builds the HTML form automatically using Magento's UI Components (Knockout.js).
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <!-- Tells the form which Data Source to use (defined below) -->
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">new_arrivals_form.new_arrivals_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">New Arrival Information</item>
+        <!-- The visual template layout for the form -->
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    
+    <settings>
+        <!-- Link the PHP button classes we created to this form -->
+        <buttons>
+            <button name="back" class="Practice\NewArrivals\Block\Adminhtml\Edit\BackButton"/>
+            <button name="save" class="Practice\NewArrivals\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>new_arrivals_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <!-- Make sure the data source loads before the form -->
+            <dep>new_arrivals_form.new_arrivals_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <!-- The Data Source links the form to the PHP DataProvider class -->
+    <dataSource name="new_arrivals_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <!-- IMPORTANT: When the admin clicks "Save", send the POST data to this URL -->
+            <submitUrl path="newarrivals/index/save"/>
+        </settings>
+        <!-- Link to the DataProvider.php file we created -->
+        <dataProvider class="Practice\NewArrivals\Model\NewArrival\DataProvider" name="new_arrivals_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <!-- The Fieldset is the actual container/box for your input fields -->
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+
+        <!-- FIELD 1: Hidden ID field (Required so Magento knows which item to update when editing) -->
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">new_arrival</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible> <!-- Keep it hidden -->
+                <dataScope>entity_id</dataScope> <!-- Maps to the database column 'entity_id' -->
+            </settings>
+        </field>
+
+        <!-- FIELD 2: Product ID -->
+        <field name="product_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">new_arrival</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule> <!-- Make it mandatory -->
+                    <rule name="validate-digits" xsi:type="boolean">true</rule> <!-- Only allow numbers -->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Product ID</label>
+                <dataScope>product_id</dataScope> <!-- Maps to 'product_id' column -->
+            </settings>
+        </field>
+
+        <!-- FIELD 3: Sort Order -->
+        <field name="sort_order" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">new_arrival</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Sort Order</label>
+                <dataScope>sort_order</dataScope> <!-- Maps to 'sort_order' column -->
+            </settings>
+        </field>
+
+        <!-- FIELD 4: Is Active (Toggle Switch) -->
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">new_arrival</item>
+                    <item name="default" xsi:type="number">1</item> <!-- Default to "Enabled" -->
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+                <dataScope>is_active</dataScope> <!-- Maps to 'is_active' column -->
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map> <!-- False = 0 in DB -->
+                            <map name="true" xsi:type="number">1</map>  <!-- True = 1 in DB -->
+                        </valueMap>
+                        <prefer>toggle</prefer> <!-- Make it look like a modern switch instead of a box -->
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
