@@ -54,6 +54,8 @@ class NewArrivals extends Template
         foreach ($productCollection as $product) {
             $formattedProducts[] = [
                 'name' => $product->getName(),
+                'product_id' => $product->getId(),
+                'add_to_cart_url' => $this->getUrl('checkout/cart/add', ['product' => $product->getId(), '_secure' => true]),
                 'price' => (float) $product->getPrice(),
                 'special_price' => $product->getSpecialPrice() ? (float) $product->getSpecialPrice() : null,
                 'image' => $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl(),
