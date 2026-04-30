@@ -1,70 +1,69 @@
 <?php
-
 namespace Practice\NewArrivals\Block;
 
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
+use Practice\NewArrivals\Model\ResourceModel\NewArrival\CollectionFactory as CustomCollectionFactory;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\Catalog\Helper\Image as ImageHelper;
 
 class NewArrivals extends Template
 {
-    /**
-     * Get static product data for now (will be replaced with DB data later)
-     *
-     * @return array
-     */
-    public function getProducts(): array
+    protected $customCollectionFactory;
+    protected $productCollectionFactory;
+    protected $imageHelper;
+
+    public function __construct(
+        Context $context,
+        CustomCollectionFactory $customCollectionFactory,
+        ProductCollectionFactory $productCollectionFactory,
+        ImageHelper $imageHelper,
+        array $data = []
+    ) {
+        $this->customCollectionFactory = $customCollectionFactory;
+        $this->productCollectionFactory = $productCollectionFactory;
+        $this->imageHelper = $imageHelper;
+        parent::__construct($context, $data);
+    }
+
+    public function getProducts()
     {
-        // Hardcoded products for testing — will be replaced in Step 9
-        return [
-            [
-                'name' => 'Holy Land Perfect Time Daily Firming Cream 50ml',
-                'image' => 'https://via.placeholder.com/300x300',
-                'price' => 80.80,
-                'special_price' => null,
-                'rating' => 0,
-                'review_count' => 0,
-                'product_url' => '#',
-                'is_new' => false,
-            ],
-            [
-                'name' => 'Lakme L2 Classic Leave-in Conditioner 300ml',
-                'image' => 'https://via.placeholder.com/300x300',
-                'price' => 35.92,
-                'special_price' => null,
-                'rating' => 0,
-                'review_count' => 0,
-                'product_url' => '#',
-                'is_new' => true,
-            ],
-            [
-                'name' => 'AG Care Reconstruct Vitamin C Mask 178ml',
-                'image' => 'https://via.placeholder.com/300x300',
-                'price' => 28.00,
-                'special_price' => 24.00,
-                'rating' => 0,
-                'review_count' => 0,
-                'product_url' => '#',
-                'is_new' => false,
-            ],
-            [
-                'name' => 'Holy Land Age Defence CC Cream SPF 50',
-                'image' => 'https://via.placeholder.com/300x300',
-                'price' => 60.00,
-                'special_price' => null,
-                'rating' => 5,
-                'review_count' => 1,
-                'product_url' => '#',
-                'is_new' => false,
-            ],
-            [
-                'name' => 'Test Product 5 for Slider',
-                'image' => 'https://via.placeholder.com/300x300',
-                'price' => 45.00,
-                'special_price' => null,
-                'rating' => 4,
-                'review_count' => 3,
-                'product_url' => '#',
-                'is_new' => true,
-            ],
-        ];
+        // 1. Get all active items from our custom database table
+        $customCollection = $this->customCollectionFactory->create()
+            ->addFieldToFilter('is_active', 1)
+            ->setOrder('sort_order', 'ASC'); // Order them exactly how you set it in the admin!
+
+        // Collect all the Product IDs you entered in the admin
+        $productIds = [];
+        foreach ($customCollection as $item) {
+            $productIds[] = $item->getProductId();
+        }
+
+        // If the table is empty, return an empty array
+        if (empty($productIds)) {
+            return [];
+        }
+
+        // 2. Ask Magento for the REAL products that match those IDs
+        $productCollection = $this->productCollectionFactory->create()
+            ->addAttributeToSelect(['name', 'price', 'thumbnail', 'url_key'])
+            ->addFieldToFilter('entity_id', ['in' => $productIds]);
+
+        // 3. Format them into the array that our existing .phtml template expects!
+        $formattedProducts = [];
+        foreach ($productCollection as $product) {
+            $formattedProducts[] = [
+                'name' => $product->getName(),
+                'price' => (float) $product->getPrice(),
+                'special_price' => $product->getSpecialPrice() ? (float) $product->getSpecialPrice() : null,
+                'image' => $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl(),
+                'product_url' => $product->getProductUrl(),
+                'rating' => 5, // We will hardcode rating for now to keep it simple
+                'review_count' => rand(1, 10), // Random review count for visual design
+                'is_new' => true
+            ];
+        }
+
+        return $formattedProducts;
     }
 }
