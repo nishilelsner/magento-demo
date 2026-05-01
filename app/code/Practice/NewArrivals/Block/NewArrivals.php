@@ -6,23 +6,27 @@ use Magento\Framework\View\Element\Template\Context;
 use Practice\NewArrivals\Model\ResourceModel\NewArrival\CollectionFactory as CustomCollectionFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Catalog\Helper\Image as ImageHelper;
+use Magento\Wishlist\Helper\Data as WishlistHelper;
 
 class NewArrivals extends Template
 {
     protected $customCollectionFactory;
     protected $productCollectionFactory;
     protected $imageHelper;
+    protected $wishlistHelper;
 
     public function __construct(
         Context $context,
         CustomCollectionFactory $customCollectionFactory,
         ProductCollectionFactory $productCollectionFactory,
         ImageHelper $imageHelper,
+        WishlistHelper $wishlistHelper,
         array $data = []
     ) {
         $this->customCollectionFactory = $customCollectionFactory;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->imageHelper = $imageHelper;
+        $this->wishlistHelper = $wishlistHelper;
         parent::__construct($context, $data);
     }
 
@@ -56,6 +60,8 @@ class NewArrivals extends Template
                 'name' => $product->getName(),
                 'product_id' => $product->getId(),
                 'add_to_cart_url' => $this->getUrl('checkout/cart/add', ['product' => $product->getId(), '_secure' => true]),
+                // Generate the JSON data required for Magento's Wishlist AJAX to work
+                'add_to_wishlist_params' => $this->wishlistHelper->getAddParams($product),
                 'price' => (float) $product->getPrice(),
                 'special_price' => $product->getSpecialPrice() ? (float) $product->getSpecialPrice() : null,
                 'image' => $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl(),
