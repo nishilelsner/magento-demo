@@ -1,0 +1,35 @@
+<!--
+/**
+* @author Elsner Team
+* @copyright Elsner Technologies Pvt. Ltd (https://www.elsner.com/)
+* @package Elsnertech_Multidiscount
+*/
+-->
+<!-- ko if: isDisplayed() -->
+
+    <!-- ko if: isMultiLineEnable() -->
+        <!-- ko foreach: getDiscountsDetails() -->
+            <tr class="totals multiline">
+                <th colspan="1" style="" class="mark" scope="row">
+                    <span class="title" data-bind="text: label"></span>
+                </th>
+                <td class="amount" data-bind="attr: {'data-th': label}">
+                    <span><span class="price" data-bind="text: value"></span></span>
+                </td>
+            </tr>
+        <!-- /ko -->
+    <!-- /ko -->
+
+    <!-- ko ifnot: isMultiLineEnable() -->
+        <tr class="totals">
+            <th colspan="1" style="" class="mark" scope="row">
+                <span class="title" data-bind="text: title"></span>
+                <span class="discount coupon" data-bind="text: getCouponCode()"></span>
+            </th>
+            <td class="amount" data-bind="attr: {'data-th': title}">
+                <span><span class="price" data-bind="text: getValue()"></span></span>
+            </td>
+        </tr>
+    <!-- /ko -->
+
+<!-- /ko -->

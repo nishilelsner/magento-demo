@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Elsner Team
+* @copyright Elsner Technologies Pvt. Ltd (https://www.elsner.com/)
+* @package Elsnertech_Multidiscount
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <section name="quote">
+        <group name="totals">
+            <item name="multilineDiscount" instance="Elsnertech\Multidiscount\Model\Total\MultilineDiscount" sort_order="150"/>
+        </group>  
+    </section>
+</config>

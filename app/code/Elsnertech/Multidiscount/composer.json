@@ -1,0 +1,28 @@
+{
+   "name": "elsnertech/multidiscount",
+   "description": "Elsnertech Multidiscount",
+   "require": {
+     "php": "^7.4.0 || ^8.1.0 || ^8.2.0"
+   },
+   "type": "magento2-module",
+   "version": "1.0.1",
+   "license": [
+     "OSL-3.0",
+     "AFL-3.0"
+   ],
+   "authors": [
+     {
+       "name": "Ashvin",
+       "email": "ashvinthakor@elsner.com",
+       "role": "Developer"
+     }
+   ],
+   "autoload": {
+     "files": [
+       "registration.php"
+     ],
+     "psr-4": {
+       "Elsnertech\\Multidiscount\\": ""
+     }
+   }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Elsner Team
+* @copyright Elsner Technologies Pvt. Ltd (https://www.elsner.com/)
+* @package Elsnertech_Multidiscount
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\SalesRule\Model\RulesApplier" type="Elsnertech\Multidiscount\Model\SalesRule\RulesApplier"/>
+	<preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Elsnertech\Multidiscount\Model\Sales\Order\Pdf\Invoice" />
+	<preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="Elsnertech\Multidiscount\Model\Sales\Order\Pdf\Creditmemo" />
+	
+	<type name="Magento\Checkout\Model\DefaultConfigProvider">
+		<plugin name="multiline_discount_plugin_config_provider" type="Elsnertech\Multidiscount\Plugin\Checkout\Model\DefaultConfigProvider" sortOrder="1"/>
+	</type>
+</config>

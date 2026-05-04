@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Elsner Team
+* @copyright Elsner Technologies Pvt. Ltd (https://www.elsner.com/)
+* @package Elsnertech_Multidiscount
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+   <system>
+        <tab id="elsnertech" translate="label" sortOrder="10">
+            <label>Elsnertech</label>
+        </tab>
+        <section id="multiline" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>MultiDiscount</label>
+            <tab>elsnertech</tab>
+            <resource>Elsnertech_Multidiscount::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="activate" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable MultiDiscount</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+            </group>
+        </section>
+    </system>
+</config>
