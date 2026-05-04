@@ -29,6 +29,14 @@ class NewArrivals extends Template
         $this->wishlistHelper = $wishlistHelper;
         parent::__construct($context, $data);
     }
+    public function getSliderTitle()
+    {
+        // _scopeConfig is magically provided by the parent Template class!
+        return $this->_scopeConfig->getValue(
+            'newarrivals/general/slider_title',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
 
     public function getProducts()
     {

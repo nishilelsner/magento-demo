@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- 1. Create a new Tab on the left side of Stores > Configuration -->
+        <tab id="practice" translate="label" sortOrder="100">
+            <label>Practice Modules</label>
+        </tab>
+        
+        <!-- 2. Create a new Section under our Tab -->
+        <section id="newarrivals" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>New Arrivals Slider</label>
+            <tab>practice</tab>
+            <resource>Practice_NewArrivals::newarrivals</resource>
+            
+            <!-- 3. Create a group (collapsible box) for our fields -->
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                
+                <!-- 4. The actual text input field for the slider title -->
+                <field id="slider_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Title</label>
+                    <comment>Enter the title you want to display above the slider.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

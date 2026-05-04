@@ -14,7 +14,9 @@ if ($productCount === 0) {
 
     <!-- Section Header -->
     <div class="new-arrivals-header">
-        <h2 class="new-arrivals-title">New Arrival</h2>
+        <h2 class="new-arrivals-title">
+            <?= $block->escapeHtml($block->getSliderTitle() ?: 'New Arrival') ?>
+        </h2>
         <a href="#" class="new-arrivals-view-all">View All</a>
     </div>
 
