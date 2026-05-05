@@ -1,0 +1,22 @@
+{
+    "quote": {
+        "column": {
+            "multiline_discount": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "multiline_discount": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "multiline_discount": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "multiline_discount": true
+        }
+    }
+}

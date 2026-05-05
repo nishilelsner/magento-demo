@@ -1,0 +1,17 @@
+{
+    "practice_waitlist": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "customer_name": true,
+            "customer_email": true,
+            "customer_phone": true,
+            "customer_comment": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
