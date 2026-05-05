@@ -1,3 +1,22 @@
-<div id="join-waitlist-modal" >
-    yes I am the modal.
+<?php 
+    $_product = $block->getProduct();
+    $imageUrl = $block->getImage($_product, 'product_page_image_small')->getImageUrl();
+?>
+<div id="join-waitlist-modal">
+    <!-- Product Details -->
+    <div class="waitlist-product-info">
+        <img src="<?= $block->escapeUrl($imageUrl) ?>" alt="<?= $block->escapeHtml($_product->getName()) ?>"/>
+        <h2><?= $block->escapeHtml($_product->getName()) ?></h2>
+        <p>SKU: <?= $block->escapeHtml($_product->getSku()) ?></p>
+        <p>Price: $<?= $block->escapeHtml($_product->getPrice()) ?></p>
+    </div>
+
+    <!-- Waitlist Form -->
+    <div class="waitlist-form">
+        <input type="text" placeholder="Your Name" id="waitlist-name"/>
+        <input type="email" placeholder="Your Email" id="waitlist-email"/>
+        <input type="tel" placeholder="Your Phone" id="waitlist-phone"/>
+        <textarea placeholder="Comments" id="waitlist-comment"></textarea>
+        <button type="button" id="waitlist-submit">Submit</button>
+    </div>
 </div>
