@@ -39,8 +39,11 @@
     </div>
 </div>
 <?php else: ?>
-<div>
-    <button class="action primary" type="button">Join Waitlist</button>
+<div data-mage-init='{"waitlist_module_js": {}}'>
+    <button id="join-waitlist-btn" class="action primary" type="button">
+        Join Waitlist
+    </button>
+    <?= $block->getChildHtml('waitlist_modal') ?>
 </div>
 <?php endif; ?>
 <script type="text/x-magento-init">

@@ -3,6 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.addtocart" class="Practice\Waitlist\Block\Product\View">
+            <block name="waitlist_modal" template="Practice_Waitlist::modal/view/waitlist_modal.phtml" />
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">
                     Practice_Waitlist::product/view/addtocart.phtml
