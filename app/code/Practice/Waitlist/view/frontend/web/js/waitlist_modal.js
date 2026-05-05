@@ -9,6 +9,7 @@ define([
             type: 'popup',
             responsive: true,
             innerScroll: true,
+            modalClass: 'waitlist-modal',
             buttons: [{
                 text: $.mage.__('Continue'),
                 class: 'mymodal1',
