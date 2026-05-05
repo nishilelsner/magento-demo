@@ -10,13 +10,7 @@ define([
             responsive: true,
             innerScroll: true,
             modalClass: 'waitlist-modal',
-            buttons: [{
-                text: $.mage.__('Continue'),
-                class: 'mymodal1',
-                click: function () {
-                    this.closeModal();
-                }
-            }]
+            buttons: []
         };
 
         var popup = modal(options, $('#join-waitlist-modal'));
