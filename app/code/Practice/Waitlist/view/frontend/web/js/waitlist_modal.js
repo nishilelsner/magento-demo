@@ -12,7 +12,6 @@ define([
             modalClass: 'waitlist-modal',
             buttons: []
         };
-        console.log(element);
         var popup = modal(options, $('#join-waitlist-modal'));
 
         $(element).find('#join-waitlist-btn').on('click', function () {
@@ -20,7 +19,6 @@ define([
         });
 
         $('#waitlist-submit').on('click', function () {
-            alert('hello');
             $.ajax({
                 url: '/waitlist/manage/submit',
                 type: 'POST',
