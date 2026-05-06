@@ -31,7 +31,6 @@ define([
 
         $form.on('submit', function (e) {
             e.preventDefault();
-            console.log('jsk');
 
             if ($form.valid()) {
                 $.ajax({
