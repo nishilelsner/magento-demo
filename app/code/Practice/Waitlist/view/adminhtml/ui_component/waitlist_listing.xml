@@ -36,6 +36,11 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="waitlist_columns">
+       <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
         <column name="entity_id" sortOrder="10">
             <settings>
                 <filter>textRange</filter>
@@ -80,5 +85,12 @@
                 <label translate="true">Created At</label>
             </settings>
         </column>
+        <actionsColumn name="actions" class="Practice\Waitlist\Ui\Component\Listing\Column\WaitlistActions" sortOrder="200">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>
