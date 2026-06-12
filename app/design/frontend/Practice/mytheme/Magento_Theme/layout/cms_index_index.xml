@@ -5,7 +5,8 @@
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template" 
                    name="test.block" 
-                   template="Magento_Theme::html/test.phtml"/>
+                   template="Magento_Theme::html/test.phtml"
+                   after="new.arrivals.slider"/>
         </referenceContainer>
     </body>
 </page>
